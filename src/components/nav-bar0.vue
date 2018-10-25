@@ -1,3 +1,4 @@
+<!--登录前的导航条-->
 <template>
   <el-row style="background: #2d9f80;">
     <el-col :span="8">
@@ -12,17 +13,22 @@
         <div class="line"></div>
         <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect"
                  background-color="#2d9f80" text-color="#000" active-text-color="#ffd04b" style="border: 0">
-
           <el-menu-item index="1">
-            <router-link class="hove" to="/user/userinfo" tag="a">个人中心</router-link>
+            <router-link class="hove" to="/" tag="a">热门推荐</router-link>
           </el-menu-item>
           <el-menu-item index="2">
-            <router-link class="hove" to="/user/write" tag="a">我的游记</router-link>
+            <router-link class="hove" to="/" tag="a">摄影</router-link>
+            <template slot="title">主题推荐</template>
           </el-menu-item>
           <el-menu-item index="3">
-            <router-link class="hove" to="/user/write" tag="a">我的足迹</router-link>
+            <router-link class="hove" to="/blog/blog" tag="a">游记</router-link>
           </el-menu-item>
-          <el-menu-item class="hove" index="4">退出</el-menu-item>
+          <el-menu-item index="4">
+            <router-link class="hove" to="/user/userinfo" tag="a">个人中心</router-link>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <router-link class="hove" to="/">退出</router-link>
+          </el-menu-item>
         </el-menu>
       </div>
     </el-col>
@@ -41,6 +47,12 @@
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
+      },
+      denglu:function (event) {
+        var _this = this
+        setTimeout(function () {
+          _this.$router.push({path: ''})
+        }, 500)
       }
     }
   }

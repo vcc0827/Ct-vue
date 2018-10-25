@@ -29,9 +29,14 @@
               </el-form-item>
             </el-form>
         </el-tab-pane>
-        <el-tab-pane label="收到的消息">您尚未收到任何消息！</el-tab-pane>
+        <el-tab-pane label="收到的消息">
+          <div> 您尚未收到任何消息！ </div>
+        </el-tab-pane>
         <el-tab-pane label="修改我的个人信息" style="overflow: hidden">
           <changeinfo></changeinfo>
+        </el-tab-pane>
+        <el-tab-pane label="写游记">
+          <el-button type="success" @click="toUpload" style="text-align: center"> 点击这里开始写游记 </el-button>
         </el-tab-pane>
       </el-tabs>
     </el-main>
@@ -44,18 +49,19 @@
 
 <script>
 
-  import bar from '../nav-bar'
+  import bar from '../nav-bar1'
   import footer from '../nav-footer'
   import changeinfo from './changeinfo'
+
 
   export default {
     components: {
       'app-nav-bar': bar,
       'app-nav-footer': footer,
       'changeinfo': changeinfo,
+
     },
     data() {
-
       return {
         ruleForm: {
           firstname: '',
@@ -68,6 +74,14 @@
         imageUrl: '',
       }
     },
+    methods:{
+      toUpload: function (event) {
+        var _this = this
+        setTimeout(function () {
+          _this.$router.push({path: '/user/upload'})
+        }, 500)
+      },
+    }
   }
 
 </script>

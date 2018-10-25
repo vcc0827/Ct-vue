@@ -171,7 +171,7 @@
   }
 
   .third {
-    background: rgba(0, 0, 255, 0.1);
+    background: #eee;
     min-width: 1366px;
     height: 400px;
     text-align: center;

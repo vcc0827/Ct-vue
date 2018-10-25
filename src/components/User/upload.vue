@@ -1,10 +1,9 @@
-<!--未完成！-->
 <template>
   <el-container>
-    <app-nav-bar></app-nav-bar>
     <main style="    width: 100%;
     padding: 0;
     background-color: #f1f1f1;">
+      <app-nav-bar></app-nav-bar>
       <!--顶部提示条-->
       <div class="top">
         <!--<div class="save_time">没有保存</div>-->
@@ -21,7 +20,7 @@
           <!--标题-->
           <div class="title">
             <el-input
-              maxlength="30" @input = "descInput"
+              maxlength="30" @input="descInput"
               v-model="desc" value data-minlen="1" data-maxlen="30"
               placeholder="游记题目" class="inpu el-input__inner">
             </el-input>
@@ -80,56 +79,89 @@
               </div>
             </div>
           </div>
-          <!--添加新一天-->
-          <div class="section add_card ui_button secondary loading" id="ADD_CARD">
-            <div class="section_head" @click="plzwait">
-              <span>
-                <span class="ui_icon plus"></span>
-                添加新一天
-                <span class="ui_loader">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span></span>
+          <!--第一天-->
+          <newday></newday>
+          <!--新增加一天-->
+          <div class="section ui_card">
+            <div class="section_head" @click="newDays">
+              <span >添加新1天</span>
             </div>
           </div>
         </div>
       </div>
-    </main>
-    <el-footer>
       <app-nav-footer></app-nav-footer>
-    </el-footer>
+    </main>
   </el-container>
 
 </template>
 
 <script>
-  import bar from '../nav-bar'
-  import footer from '../nav-footer'
+import newday from './newday'
+import bar from '../nav-bar1'
+import footer from '../nav-footer'
 
   export default {
     components: {
+      'newday':newday,
       'app-nav-bar': bar,
-      'app-nav-footer': footer
+      'app-nav-footer': footer,
     },
-
+    get(url, data) {
+      return new Promise((resolve, reject) => {
+        axios.get(url, {
+          params: data
+        }).then((res) => {
+          if (res) {
+            //成功回调
+            resolve(res);
+          }
+        }).catch((error) => {
+          reject(error);
+        })
+      })
+    },
+    post(url, data) {
+      return new Promise((resolve, reject) => {
+        axios.post(url, qs.stringify(data), {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json'
+          }
+        }).then((res) => {
+          if (res) {
+            //成功回调
+            resolve(res);
+          }
+        }).catch((error) => {
+          reject(error);
+        })
+      })
+    },
     name: "upload",
     data() {
       return {
-        remnant:30,//倒计数
+        remnant: 30,//倒计数
         input: '',
         input2: '',
         value: '',
         flag: false,
+        pp:false,
+        imgBase64: [],
+        textarea: '',
+        fileList2: [{
+          name: 'food.jpeg',
+          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+        }, {
+          name: 'food2.jpeg',
+          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+        }]
       }
     },
     methods: {
       //计算输入数
-      descInput(){
+      descInput() {
         var txtVal = this.desc.length;
-        this.remnant = 30-txtVal;
+        this.remnant = 30 - txtVal;
       },
       towrite: function (event) {
         alert('您即将打开您的游记')
@@ -138,9 +170,37 @@
           _this.$router.push({path: '/user/write'})
         }, 500)
       },
+      mounted: function () {
+        var upload = document.getElementById("btnUpload");
+        var avatar = document.getElementById("avatar");
+        upload.onclick = function () {
+          avatar.click();
+        };
+
+      },
       plzwait: function (event) {
         alert('程序员去看大海了，正在赶来完善！')
       },
+      //图片预览
+      getImgBase() {
+        var _this = this;
+        var event = event || window.event;
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        //转base64
+        reader.onload = function (e) {
+          _this.imgBase64.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      },
+      //删除图片
+      delImg(index) {
+        this.imgBase64.splice(index, 1);
+      },
+      //新增一天
+      newDays() {
+
+      }
     }
   }
 </script>
@@ -221,7 +281,7 @@
 
   .inpu {
     position: relative;
-    left: 50%;
+    left: 5%;
     font-size: 24px;
     width: 100%;
     border: 0;
@@ -241,7 +301,7 @@
 
   .characterCounter {
     position: absolute;
-    right: -63%;
+    right: -10%;
     bottom: 3px;
     font-size: 12px;
     color: #fff;
@@ -253,11 +313,12 @@
     width: 100%;
   }
 
-  .el-date-editor{
+  .el-date-editor {
     position: relative;
     left: 32%;
     text-align: left;
   }
+
   .content {
     z-index: 10;
     background-color: #fff;
@@ -281,13 +342,15 @@
   .section_title {
     font-size: 16px;
     color: #4a4a4a;
+    text-align: center;
   }
 
   .section_toggle {
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 12px;
+    position: relative;
+    float:left;
+    top: -11px;
+    left: 11px;
     line-height: 47px;
     font-size: 30px;
     color: #999;
@@ -354,5 +417,96 @@
     height: 90px;
     line-height: 90px;
     color: #fff;
+  }
+
+  * {
+    margin: 0 auto;
+    padding: 0;
+    font-family: "微软雅黑";
+  }
+
+  .clearboth::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .image-view {
+    width: 978px;
+    height: 300px;
+    margin: 10px 0 0 0;
+  }
+
+  .image-view .addbox {
+    float: left;
+    position: relative;
+    left:-2%;
+    height: 100px;
+    width: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .image-view .addbox input {
+    position: absolute;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    opacity: 0;
+  }
+
+  .image-view .addbox .addbtn {
+    float: left;
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
+    color: #fff;
+    font-size: 40px;
+    background: #ccc;
+    border-radius: 10px;
+  }
+
+  .image-view .item {
+    position: relative;
+    top:0;
+    left:0;
+    float: left;
+    height: 100px;
+    width: 100px;
+    margin: 1px 4px 1px 3px;
+  }
+
+  .image-view .item .cancel-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    background: red;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .image-view .item img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-view .view {
+    clear: both;
+    position: relative;
+    top: -116.5%;
+    left: 30%;
+  }
+
+  .myblog{
+    width:530px;
+    height:230px;
+    position: relative;
+    left:-22%;
   }
 </style>

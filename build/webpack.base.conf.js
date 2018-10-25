@@ -3,7 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-var webpack = require("webpack")
+var webpack = require('webpack')
 
 
 function resolve (dir) {
@@ -31,8 +31,17 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  plugins:[
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      jquery: "jquery",
+      "window.jQuery": "jquery"
+    })
+  ],
   module: {
     rules: [
+
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -81,12 +90,5 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new webpack.ProvidePlugin({
-      jQuery: "jquery",
-      $: "jquery"
-    })
-  ]
 
 }

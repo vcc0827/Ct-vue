@@ -12,7 +12,6 @@
 
 <script>
   import world from '../../../static/country'
-  import axios from 'axios'
 
   export default {
     data() {
@@ -25,8 +24,9 @@
     },
     name: "CloudBlog",
     methods: {
-      toCountry(name) {
-        this.$router.push({path: '/blog/' + name + ''})
+      toCountry(country) {
+        this.$router.push({path: '/blog/' + country});
+        console.log(country)
       },
       handleSelect(key, keyPath) {
         console.log(key, keyPath);

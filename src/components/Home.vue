@@ -1,19 +1,25 @@
 <template>
   <el-container>
+
     <el-header><app-nav-bar></app-nav-bar></el-header>
+
     <router-view></router-view>
+
     <app-nav-footer></app-nav-footer>
+
   </el-container>
 </template>
 
 <script>
-  import bar from './nav-bar'
+  import bar from './nav-bar1'
+
   import footer from './nav-footer'
 
   export default {
     name: 'Home',
     components: {
       'app-nav-bar': bar,
+
       'app-nav-footer': footer
     }
   }

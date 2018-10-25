@@ -29,9 +29,9 @@
         <el-form-item label="创建密码" prop="password2">
           <el-input v-model="user.password2" type="password" placeholder="请输入密码"></el-input>
         </el-form-item>
-        <el-form-item label="短信验证" prop="message">
+        <el-hhhhhform-item label="短信验证" prop="message">
           <el-input v-model="user.message" placeholder="请输入验证码"></el-input>
-        </el-form-item>
+        </el-hhhhhform-item>
         <el-form-item>
           <el-button type="primary" @click="">获取验证码</el-button>
         </el-form-item>

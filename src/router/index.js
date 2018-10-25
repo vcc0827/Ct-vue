@@ -19,6 +19,9 @@ import upload from '@/components/User/upload'
 //登录注册
 import Main from '@/components/Regedit/Main.vue'
 import Login from '@/components/Regedit/Login.vue'
+// import regedit from '@/components/Regedit/regedit.vue'
+
+
 Vue.use(Router);
 
 export default new Router({
@@ -81,18 +84,28 @@ export default new Router({
     {
       path: '/user/write',
       name: 'write',
-      component: write
+      component: write,
+      meta:{
+        requireLogin:true // 当前路由需要校验
+      }
     },
     {
       path: '/user/userinfo',
       name: 'userinfo',
-      component: userinfo
+      component: userinfo,
+      meta:{
+        requireLogin:true // 当前路由需要校验
+      }
     },
     {
       path: '/user/upload',
       name: 'upload',
-      component: upload
-    },{
+      component: upload,
+      meta:{
+        requireLogin:true // 当前路由需要校验
+      }
+    },
+    {
       path: '/',
       name: 'Main',
       component: Main
@@ -101,7 +114,12 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
-    }
+    },
+    // {
+    //   path: '/regedit',
+    //   name: 'regedit',
+    //   component: regedit
+    // }
 
   ]
 })

@@ -1,15 +1,16 @@
 <template>
   <div class="b-img">
     <el-row :gutter="20">
-      <el-col :span="6" v-for="(item,key,index) in travel" :key="key" :index="index">
-        <div class="grid-content bg-purple" @click="toblog(index)">
-          <div style="display: flex;justify-content: center;align-items: center;">
-            <img class="el-img" src="../../assets/1.png" alt="">
+      <el-col :span="6" v-for="(item,key,index) in data" :key="key" :index="index">
+        <div class="grid-content bg-purple" @click="toblog(item.article_id)">
+          <div
+            style="display: flex;justify-content: center;align-items: center;width: 326.5px;height: 190px;overflow:hidden">
+            <img class="el-img" v-bind:src=item.cover alt="">
           </div>
           <div>
-            <h2 class="list">北海道+东京 13天休闲之行</h2>
+            <h3 class="list">{{item.article_name}}</h3>
             <div>
-              <span>出行日期：2018/10/20</span><span style="padding-left: 30px">作者：</span>
+              <span>出行日期：{{item.travel_time | dateformat('YYYY-MM-DD')}}</span><span style="padding-left: 30px">作者：{{item.user_name}}</span>
             </div>
           </div>
         </div>
@@ -23,17 +24,30 @@
 
   export default {
     name: "BlogImg",
-    methods:{
-      toblog(j){
-        var i=j+1;
-        this.$router.push({path: '/read/' + i + ''})
-      }
-    },
     data() {
       return {
-        travel: travel
+        travel: travel,
+        data: []
       }
-    }
+    },
+    watch: {
+      "$route": "mounted",
+    },
+    created(){
+      this.mounted();
+    },
+    methods: {
+      toblog(j) {
+        this.$router.push({path: '/read/' + j})
+      },
+      mounted() {
+        let country = this.$route.params.id;
+        this.$axios.get(`scenic/findAll/${country}`).then((result) => {
+          // console.log(result.data);
+          this.data = result.data.data;
+        })
+      }
+    },
   }
 </script>
 
@@ -61,7 +75,7 @@
 
   .grid-content {
     border-radius: 4px;
-    height: 400px;
+    height: 300px;
   }
 
   .row-bg {
@@ -76,17 +90,16 @@
   }
 
   .el-img {
-    max-width: 80%;
-    max-height: 90%;
-    margin: 0 auto;
+    width: 100%;
+    height: auto;
   }
 
-  .list{
-    width:260px;
-    display:block;
-    overflow:hidden;
-    word-break:keep-all;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+  .list {
+    width: 260px;
+    display: block;
+    overflow: hidden;
+    word-break: keep-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 </style>

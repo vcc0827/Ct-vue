@@ -50,7 +50,7 @@
 </script>
 <style scoped>
   .middle {
-    background: rgba(0, 0, 255, 0.1);
+    background: #eee;
     min-width: 1366px;
     height: 600px;
     text-align: center;

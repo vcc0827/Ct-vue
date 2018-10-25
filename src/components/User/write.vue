@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <app-nav-bar></app-nav-bar>
+    <el-header><app-nav-bar></app-nav-bar></el-header>
     <el-main class="elmain">
       <div class="header">
         <span class="hworld">快来记录你的旅程吧</span>
@@ -23,6 +23,11 @@
           <el-table-column
             prop="travelid"
             label="编号"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="travelname"
+            label="游记名"
             width="100">
           </el-table-column>
           <el-table-column
@@ -49,7 +54,7 @@
 </template>
 
 <script>
-  import bar from '../nav-bar'
+  import bar from '../nav-bar1'
   import footer from '../nav-footer'
 
   export default {
@@ -62,19 +67,23 @@
         tableData: [{
           date: '2016-05-02',
           travelid: 't001',
+          travelname:'上海之旅',
           address: '上海',
         }, {
           date: '2016-05-04',
           travelid: 't002',
+          travelname:'悉尼之旅',
           address: '悉尼',
         }, {
           date: '2016-05-01',
           travelid: 't003',
+          travelname:'印度之旅',
           address: '印度',
 
         }, {
           date: '2016-05-03',
           travelid: 't004',
+          travelname:'阿联酋之旅',
           address: '阿联酋',
         }]
       }
@@ -96,6 +105,10 @@
 </script>
 
 <style>
+  .el-header{
+    background: #2d9f80;
+    padding: 0;
+  }
 .header{
   width: 1920px;
   height: 200px;
@@ -113,9 +126,9 @@
 
   }
   .write{
-    position: absolute;
-    top: 30%;
-    left: 50%;
+    position: relative;
+    top: 80%;
+    left: 40%;
     transform: translateX(-50%);
     width: 160px;
     height: 38px;
