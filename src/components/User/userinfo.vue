@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container style="height: 100%">
     <el-header style="background: #2d9f80;">
       <app-nav-bar></app-nav-bar>
     </el-header>
@@ -30,13 +30,13 @@
             </el-form>
         </el-tab-pane>
         <el-tab-pane label="收到的消息">
-          <div> 您尚未收到任何消息！ </div>
+          <div style="text-align: center"> 您尚未收到任何消息！ </div>
         </el-tab-pane>
         <el-tab-pane label="修改我的个人信息" style="overflow: hidden">
           <changeinfo></changeinfo>
         </el-tab-pane>
-        <el-tab-pane label="写游记">
-          <el-button type="success" @click="toUpload" style="text-align: center"> 点击这里开始写游记 </el-button>
+        <el-tab-pane label="我的收藏">
+          <div   style="text-align: center"> 您还没有收藏过任何游记! </div>
         </el-tab-pane>
       </el-tabs>
     </el-main>
@@ -81,6 +81,7 @@
           _this.$router.push({path: '/user/upload'})
         }, 500)
       },
+
     }
   }
 

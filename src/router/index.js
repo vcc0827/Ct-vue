@@ -29,6 +29,16 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Main',
+      component: Main
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/',
       name: 'ShowALL',
       component: ShowALL,
       children: [
@@ -105,21 +115,6 @@ export default new Router({
         requireLogin:true // 当前路由需要校验
       }
     },
-    {
-      path: '/',
-      name: 'Main',
-      component: Main
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    // {
-    //   path: '/regedit',
-    //   name: 'regedit',
-    //   component: regedit
-    // }
-
   ]
-})
+});
+

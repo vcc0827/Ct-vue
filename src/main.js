@@ -6,12 +6,16 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'jquery'
-
+import moment from 'moment'
+import Axios from 'axios'
+Axios.defaults.baseURL='http://127.0.0.1:3000'
+Vue.prototype.$axios=Axios;
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
-
-
+Vue.filter('dateformat', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
+  return moment(dataStr).format(pattern)
+});
 
 /* eslint-disable no-new */
 new Vue({
@@ -19,21 +23,5 @@ new Vue({
   router,
   components: {App},
   template: '<App/>',
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requireLogin)){  // 判断该路由是否需要登录权限
-    if (sessionStorage.getItem('loginInfo')) {  // 判断当前用户的登录信息loginInfo是否存在
-      alert('need login!')
-      next();
-    } else {
-      alert('do not need login!')
-      next({
-        path: '/'
-      })
-    }
-  }else {
-    next();
-  }
-
 })
+

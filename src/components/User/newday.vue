@@ -1,7 +1,7 @@
 <template>
     <div class="section ui_card">
       <div class="section_head" @click="pp=!pp">
-        <span class="section_title">第{{countdays}}天</span>
+        <span class="section_title">第1天</span>
         <div class="section_toggle">
           <div class="opened" v-if="pp">↓</div>
           <div class="closed" v-if="!pp">→</div>
@@ -197,8 +197,8 @@
 
   .image-view .item {
     position: relative;
-    top:230px;
-    left:-19%;
+    top:0;
+    left:0;
     float: left;
     height: 100px;
     width: 100px;

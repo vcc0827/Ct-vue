@@ -54,7 +54,7 @@
 </template>
 
 <script>
-  import 'swiper/dist/css/swiper.min.css'
+  // import 'swiper/dist/css/swiper.min.css'
 
   export default {
     name: "read",

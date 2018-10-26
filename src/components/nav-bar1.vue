@@ -5,7 +5,7 @@
       <li class="forlogo">
         <img src="../assets/img/logo_long.png" style="float:left;cursor:pointer; " @click="tomain" />
       </li>
-      <li class="mover"><a href="/">回到首页</a>
+      <li class="mover"><a href="/">首页</a>
       </li>
       <li class="mover"><a href="#">热门</a>
         <ul class="drop menu1">
@@ -27,9 +27,9 @@
           <li><a href="/user/write">我的游记</a></li>
         </ul>
       </li>
-      <li class="mover"><a href="#">个人中心</a>
+      <li class="mover"><a href="/login">登录</a>
         <ul class="drop menu3">
-          <li><a href="/User/userinfo" target="_self">我的主页</a></li>
+          <li><a href="/User/userinfo" target="_self">个人中心</a></li>
           <li><a href="#">退出登录</a></li>
         </ul>
       </li>
@@ -60,6 +60,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    margin-bottom:-1%;
   }
 
   body {

@@ -1,16 +1,14 @@
 <template>
-  <el-container>
-    <main style="    width: 100%;
+  <el-container style="height: 100%">
+    <main style="
+    width: 100%;
     padding: 0;
-    background-color: #f1f1f1;">
-      <app-nav-bar></app-nav-bar>
-      <!--顶部提示条-->
-      <div class="top">
-        <!--<div class="save_time">没有保存</div>-->
+    background-color: #f1f1f1; ">
+      <div style="background: #2d9f80;
+      padding: 0;">
+        <app-nav-bar></app-nav-bar>
+    </div>
 
-        <el-button class="button save" type="info" plain>保存草稿</el-button>
-        <el-button @click="towrite" class="button loader" type="success" plain>提交游记</el-button>
-      </div>
       <!--主体内容部分-->
       <div class="body">
         <!--头部-->
@@ -87,6 +85,7 @@
               <span >添加新1天</span>
             </div>
           </div>
+          <el-button type="success" class="button submit" @click="upload">提交</el-button>
         </div>
       </div>
       <app-nav-footer></app-nav-footer>
@@ -147,14 +146,7 @@ import footer from '../nav-footer'
         flag: false,
         pp:false,
         imgBase64: [],
-        textarea: '',
-        fileList2: [{
-          name: 'food.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }, {
-          name: 'food2.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }]
+         data:[]
       }
     },
     methods: {
@@ -178,9 +170,7 @@ import footer from '../nav-footer'
         };
 
       },
-      plzwait: function (event) {
-        alert('程序员去看大海了，正在赶来完善！')
-      },
+
       //图片预览
       getImgBase() {
         var _this = this;
@@ -200,12 +190,33 @@ import footer from '../nav-footer'
       //新增一天
       newDays() {
 
+      },
+      //提交
+      upload(){
+        alert('正在提交!')
+        this.$axios({
+          method: 'post',
+          url: `${$.url}/user/upload`,
+          data: data,
+        }).then(() => {
+          this.$message({
+            message: '恭喜你,上传成功,静侯热评！',
+            type: 'success'
+          });
+        }).catch(() => {
+          this.$message.error('上传失败,赶快看看是哪里出错了');
+        });
       }
+
     }
   }
 </script>
 
 <style scoped>
+  .el-header{
+    background: #2d9f80;
+    padding: 0;
+  }
   .top {
     margin: 0;
     padding: 0;
@@ -260,9 +271,9 @@ import footer from '../nav-footer'
   }
 
   .body {
-    height: 800px;
+    height: 100%;
     width: 1130px;
-    margin: 0 auto;
+    margin: 15px auto;
     position: relative;
   }
 
@@ -323,6 +334,7 @@ import footer from '../nav-footer'
     z-index: 10;
     background-color: #fff;
     padding: 15px 0;
+    height:50%;
   }
 
   .section {
@@ -508,5 +520,10 @@ import footer from '../nav-footer'
     height:230px;
     position: relative;
     left:-22%;
+  }
+
+  .submit{
+    position:relative;
+    float:right;
   }
 </style>

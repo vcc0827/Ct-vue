@@ -27,6 +27,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .el-container{
+    height:100%;
+  }
   .el-main {
     padding: 0;
     margin: 0 auto;
