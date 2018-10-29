@@ -56,7 +56,7 @@
       },
       upload_click(i){
         if(this.zan){
-        this.$axios.post('scenic/uploadClick',{
+        this.$axios.post('locate/uploadClick',{
           id:this.data.article_id,
           count:this.data.article_click+1
         }).then((res)=>{});
@@ -69,7 +69,7 @@
       },
       mounted() {
         let article = this.$route.params.id;
-        this.$axios.get(`scenic/find/${article}`).then((result) => {
+        this.$axios.get(`locate/find/${article}`).then((result) => {
           // console.log(result.data);
           this.data = result.data.data[0];
           console.log(this.data)

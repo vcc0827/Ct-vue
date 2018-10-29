@@ -42,7 +42,7 @@
       },
       mounted() {
         let country = this.$route.params.id;
-        this.$axios.get(`scenic/findAll/${country}`).then((result) => {
+        this.$axios.get(`locate/findAll/${country}`).then((result) => {
           // console.log(result.data);
           this.data = result.data.data;
         })

@@ -3,34 +3,30 @@
   <div style="position:relative; z-index:9999;">
     <ul class="main">
       <li class="forlogo">
-        <img src="../assets/img/logo_long.png" style="float:left;cursor:pointer; " @click="tomain" />
+        <img src="../assets/img/logo.png" style="float:left;cursor:pointer;width:127px;height: 50px" @click="tomain"/>
       </li>
       <li class="mover"><a href="/">首页</a>
       </li>
-      <li class="mover"><a href="#">热门</a>
-        <ul class="drop menu1">
-          <li><a href="/">热门目的地</a></li>
-          <li><a href="/">当季目的地</a></li>
-        </ul>
-      </li>
+      <!--<li class="mover"><a href="#">旅行者之选</a>-->
+      <!--</li>-->
       <li class="mover"><a href="#">主题游推荐</a>
         <ul class="drop menu2">
-          <li><a href="#">摄影</a></li>
-          <li><a href="#">美食</a></li>
-          <li><a href="#">购物</a></li>
-          <li><a href="#">博物馆</a></li>
+          <li><a href="/show/photo">摄影</a></li>
+          <li><a href="/show/food">美食</a></li>
+          <li><a href="/show/buy">购物</a></li>
         </ul>
       </li>
-      <li class="mover"><a href="#">游记</a>
-        <ul class="drop menu3">
-          <li><a href="/Blog/Blog">他人游记</a></li>
-          <li><a href="/user/write">我的游记</a></li>
-        </ul>
+      <li class="mover"><a href="/blog/中国">游记</a>
       </li>
-      <li class="mover"><a href="/login">登录</a>
+      <li class="mover" v-if="!isLogin">
+        <a href="/register/Login">登录/注册</a>
+      </li>
+      <li class="mover" v-else>
+        <a href="">欢迎：{{UserPhone}}！</a>
         <ul class="drop menu3">
-          <li><a href="/User/userinfo" target="_self">个人中心</a></li>
-          <li><a href="#">退出登录</a></li>
+          <li><a href="/User/userinfo">个人中心</a></li>
+          <li><a href="/User/write">我的游记</a></li>
+          <li><a href="#" @click="outLogin()">退出</a></li>
         </ul>
       </li>
     </ul>
@@ -38,20 +34,27 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+
   export default {
     data() {
       return {
-
+        num: 1
       }
-      },
+    },
     methods: {
       tomain(event) {
-          var _this = this
-          setTimeout(function () {
-            _this.$router.push({path: '/'})
-          }, 500)
-        }
-      }
+        var _this = this;
+        setTimeout(function () {
+          _this.$router.push({path: '/'})
+        }, 500)
+      },
+      outLogin() {
+        localStorage.clear();
+        history.go(0)
+      },
+    },
+    computed: mapGetters(['UserId', 'UserName', 'UserPhone','isLogin'])
   }
 </script>
 
@@ -60,7 +63,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    margin-bottom:-1%;
+    margin-bottom: -1%;
   }
 
   body {
@@ -71,6 +74,7 @@
     font-family: "Raleway", sans-serif;
     letter-spacing: 1px;
   }
+
   h1 {
     text-align: center;
     color: #fff;
@@ -88,17 +92,22 @@
     text-align: center;
     border-radius: 4px;
   }
+
   .main {
     display: flex;
     justify-content: center;
-    height:50px;
+    height: 50px;
+    background: #2d9f80;
   }
+
   .main > li {
     margin: 0 2%;
   }
-  .main > li a{
-    border-left:0px solid rgba(23, 23, 50, 1);
+
+  .main > li a {
+    border-left: 0px solid rgba(23, 23, 50, 1);
   }
+
   a {
     text-decoration: none;
     color: #ffe;
@@ -108,7 +117,7 @@
     padding: 10px 15px;
     font-size: 16px;
     transition: background-color 0.5s ease-in-out;
-    margin-top:2px;
+    margin-top: 2px;
     font-family: "Raleway", sans-serif;
   }
 
@@ -126,15 +135,16 @@
     padding: 10px 0;
   }
 
-  .forlogo{
+  .forlogo {
     position: absolute;
-    left:5%;
+    left: 5%;
   }
 
-  .mover{
+  .mover {
     position: relative;
-    right:-25%;
+    right: -25%;
   }
+
   /*------------- menu1 animation -------------------*/
 
   .main li:hover .menu1 li:first-of-type {

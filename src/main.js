@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'jquery'
 import moment from 'moment'
 import Axios from 'axios'
+import store from './router/store'
 Axios.defaults.baseURL='http://127.0.0.1:3000'
 Vue.prototype.$axios=Axios;
 
@@ -21,6 +22,7 @@ Vue.filter('dateformat', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
 new Vue({
   el: '#app',
   router,
+  store,
   components: {App},
   template: '<App/>',
 })

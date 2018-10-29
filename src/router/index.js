@@ -1,26 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+//主页
+import main from '../components/main'
+//登录注册
+import Login from '../components/Register/Login.vue'
+//用户信息
+import userinfo from '../components/User/userinfo'
+import write from '../components/User/write'
+import upload from '../components/User/upload'
+//展示
+import buy from '../components/show/buy'
+import food from '../components/show/food'
+import photo from '../components/show/photo'
+//他人游记信息
 import ShowALL from '../components/Home'
 import ReadOne from '../components/Read/ReadOne'
 import Blog from '../components/Blog/Blog'
-import home from '../components/Home/show'
-import hk from '../components/Food/HK'
-import tb from '../components/Food/TB'
-import xjp from '../components/Food/XJP'
-import qm from '../components/Food/QM'
-import lsj from '../components/Shop/lsj'
-import am from '../components/Shop/am'
-import db from '../components/Shop/db'
-import dj from '../components/Shop/dj'
-//用户信息
-import userinfo from '@/components/User/userinfo'
-import write from '@/components/User/write'
-import upload from '@/components/User/upload'
-//登录注册
-import Main from '@/components/Regedit/Main.vue'
-import Login from '@/components/Regedit/Login.vue'
-// import regedit from '@/components/Regedit/regedit.vue'
-
 
 Vue.use(Router);
 
@@ -28,68 +24,14 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'Main',
-      component: Main
+      path:'/',
+      name:'main',
+      component:main,
     },
     {
-      path: '/login',
+      path: '/register/Login',
       name: 'Login',
-      component: Login
-    },
-    {
-      path: '/',
-      name: 'ShowALL',
-      component: ShowALL,
-      children: [
-        {
-          path:'',
-          name:'home',
-          component:home
-        },
-        {
-          path: 'read/:id',
-          name: 'read',
-          component: ReadOne
-        },
-        {
-          path: 'blog/:id',
-          name: 'blog',
-          component: Blog
-        }
-      ],
-    },
-    {
-      path:'/hk',
-      component:hk
-    },
-    {
-      path:'/tb',
-      component:tb
-    },
-    {
-      path:'/xjp',
-      component:xjp
-    },
-    {
-      path:'/qm',
-      component:qm
-    },
-    {
-      path:'/lsj',
-      component:lsj
-    },
-    {
-      path:'/am',
-      component:am
-    },
-    {
-      path:'/db',
-      component:db
-    },
-    {
-      path:'/dj',
-      component:dj
+      component: Login,
     },
     {
       path: '/user/write',
@@ -115,6 +57,50 @@ export default new Router({
         requireLogin:true // 当前路由需要校验
       }
     },
+    {
+      path:'/show/buy',
+      name:'buy',
+      component:buy,
+    },
+    {
+      path:'/show/food',
+      name:'food',
+      component:food,
+    },
+    {
+      path:'/show/photo',
+      name:'photo',
+      component:photo,
+    },
+
+    {
+      path:'/',
+      name:'ShowALL',
+      component:ShowALL,
+      children:[
+        {
+          path:'read/:id',
+          name:'read',
+          component:ReadOne,
+        },
+        {
+          path:'blog/:id',
+          name:'blog',
+          component:Blog,
+        }
+      ]
+    },
+
+    // {
+    //   path: '/read/:id',
+    //   name: 'read',
+    //   component: ReadOne
+    // },
+    // {
+    //   path: '/blog/:id',
+    //   name: 'blog',
+    //   component: Blog
+    // },
+
   ]
 });
-

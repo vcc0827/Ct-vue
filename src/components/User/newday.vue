@@ -1,35 +1,50 @@
 <template>
     <div class="section ui_card">
       <div class="section_head" @click="pp=!pp">
-        <span class="section_title">第1天</span>
+        <span class="section_title">这次旅行的记录</span>
         <div class="section_toggle">
           <div class="opened" v-if="pp">↓</div>
           <div class="closed" v-if="!pp">→</div>
         </div>
       </div>
-      <div class="section_body">
+      <el-form class="section_body" ref="form" :model="form">
         <div class="image-view" v-if="pp">
-          <!--添加图片-->
-          <div class="addbox">
-            <input type="file" @change="getImgBase()">
-            <div class="addbtn">+</div>
-          </div>
-          <!--预览-->
-          <div class="item" v-for="(item, index) in imgBase64">
-            <span class="cancel-btn" @click="delImg(index)">x</span>
-            <img :src="item">
-          </div>
+
+          <!--图片-->
+          <el-form-item label="上传图片">
+            <el-upload
+              name="img2"
+              :before-upload="beforeUpload"
+              :action="UploadUrl()"
+              :auto-upload="false"
+              ref="upload2"
+              list-type="picture-card"
+              :file-list="fileList2"
+              :on-change="onChange"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove">
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt="">
+            </el-dialog>
+
+          </el-form-item>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+          </el-dialog>
+
+          <!--正文-->
           <el-input
             type="textarea"
             :rows="5"
             placeholder="请输入内容"
-            v-model="textarea">
+            v-model="textarea"
+          style="margin-top:70px">
           </el-input>
-          <div style="float:right; margin:5px;">
-            <el-button type="success" round>确认保存</el-button>
-          </div>
+
         </div>
-      </div>
+      </el-form>
     </div>
 
 </template>
@@ -38,94 +53,122 @@
 
 
   export default {
-    components: {
-    },
-    get(url, data) {
-      return new Promise((resolve, reject) => {
-        axios.get(url, {
-          params: data
-        }).then((res) => {
-          if (res) {
-            //成功回调
-            resolve(res);
-          }
-        }).catch((error) => {
-          reject(error);
-        })
-      })
-    },
-    post(url, data) {
-      return new Promise((resolve, reject) => {
-        axios.post(url, qs.stringify(data), {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept': 'application/json'
-          }
-        }).then((res) => {
-          if (res) {
-            //成功回调
-            resolve(res);
-          }
-        }).catch((error) => {
-          reject(error);
-        })
-      })
-    },
+
     data() {
       return {
-        input: '',
-        input2: '',
-        value: '',
         flag: false,
         pp:false,
-        imgBase64: [],
         textarea: '',
-        fileList2: [{
-          name: 'food.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }, {
-          name: 'food2.jpeg',
-          url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-        }]
+        dialogImageUrl: '',
+        dialogVisible: false
       }
     },
-    methods: {
-      mounted: function () {
-        var upload = document.getElementById("btnUpload");
-        var avatar = document.getElementById("avatar");
-        upload.onclick = function () {
-          avatar.click();
-        };
+    created(){
+
+    },
+    methods:{
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      },
+      beforeUpload(file){
+        console.log(this.form.name)
+        var fd = new FormData();
+        fd.append('fileList',this.fileList);//传文件
+        fd.append('name',this.form.name)
+        console.log(fd)
+        var config = {	    headers:{'Content-Type':'multipart/form-data'}	};
+        //fd.append('srid',this.aqForm.srid);//传其他参数
+        /*axios.post('/cms/rating/savePic',fd).then(function(res){
+            alert('成功');
+        })*/
+
+        return true;
+      },
+      UploadUrl:function(){
+        return "http://localhost:9000/cms/rating/savePic";
+      },
+      submitUpload() {
+
+        this.$refs.upload2.submit();
+        var fd = new FormData();
+        fd.append('fileList',this.fileList);//传文件
+        fd.append('name',this.form.name)
+        axios.post('/static/img',fd).then(function(res){
+          alert('成功');
+
+        })
+      },
+      onChange(file, fileList){
+        this.fileList=fileList;
+        console.log(this.fileList)
+      },
+      handlePictureCardPreview(file) {
+        console.log("handlePictureCardPreview")
+        this.dialogImageUrl = file.url;
+        console.log(file.url);
+        this.dialogVisible = true;
+      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
 
       },
-      plzwait: function (event) {
-        alert('程序员去看大海了，正在赶来完善！')
-      },
-      //图片预览
-      getImgBase() {
-        var _this = this;
-        var event = event || window.event;
-        var file = event.target.files[0];
-        var reader = new FileReader();
-        //转base64
-        reader.onload = function (e) {
-          _this.imgBase64.push(e.target.result);
-        }
-        reader.readAsDataURL(file);
-      },
-      //删除图片
-      delImg(index) {
-        this.imgBase64.splice(index, 1);
-      },
-      //新增一天
-      newDays() {
-
-      }
     }
+
+
+
   }
 </script>
 
 <style scoped>
+
+  .hide{
+    display:none;
+  }
+  .img-item{
+    width:4.4rem;
+    height: 3.75rem;
+    float:left;
+    margin-left: 1.4rem;
+    margin-top:0.5rem;
+  }
+  .img-item{
+    width: 100%;
+    height: 100%;
+  }
+  .active-pic{
+    font-size: 0.6rem;
+    color:red;
+    padding:0 1rem 0 1.5rem;
+    margin-top: 1rem;
+  }
+  .add-pic{
+    background: #f3f3f3;
+    width: 4.4rem;
+    height: 3.75rem;
+    float: left;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size:2rem;
+    line-height: 3.5rem;
+    color: #979797;
+    position: relative;
+  }
+  .add-pic input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height:100%;
+    z-index: 10;
+    opacity:0;
+  }
+
+
   .section_toggle {
     cursor: pointer;
     position: relative;
@@ -140,6 +183,9 @@
     font-size: 16px;
     color: #4a4a4a;
     text-align: center;
+  }
+  .section_body{
+    height:400px;
   }
   .ui_card {
     background-color: #fff;
@@ -231,4 +277,5 @@
     top: -116.5%;
     left: 30%;
   }
+
 </style>

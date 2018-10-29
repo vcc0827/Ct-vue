@@ -26,13 +26,13 @@
        </el-table-column>
        <el-table-column label="游记名称" width="500">
          <template slot-scope="scope">
-           <span>{{data[0].article_name}}</span>
+           <span @click="toBlog(data[0].article_id)" style="cursor:pointer">{{data[0].article_name}}</span>
          </template>
        </el-table-column>
      </el-table>
     </el-main>
     <el-footer>
-      <!--<app-nav-footer></app-nav-footer>-->
+      <app-nav-footer></app-nav-footer>
     </el-footer>
   </el-container>
 
@@ -45,7 +45,7 @@
   export default {
     components:{
       'app-nav-bar': bar,
-      'app-nav-footer': footer
+      'app-nav-footer': footer,
     },
     data() {
       return {
@@ -56,13 +56,6 @@
       this.mounted();
     },
     methods: {
-      toarticle(event){
-
-      },
-      handleDelete(index, row) {
-        alert('功能施工中，敬请期待！')
-        console.log(index, row);
-      },
       toupload: function (event) {
         alert('您即将开始书写您的游记!')
         var _this = this
@@ -70,9 +63,13 @@
           _this.$router.push({path: '/user/upload'})
         }, 500)
       },
+      toBlog:function(event){
+        this.$router.push({path: '/read/'+event})
+        console.log(event);
+      },
       mounted() {
         let article = 4;
-        this.$axios.get(`scenic/find/${article}`).then((result) => {
+        this.$axios.get(`locate/find/${article}`).then((result) => {
           // console.log(result.data);
           this.data = result.data.data;
           console.log(this.data)

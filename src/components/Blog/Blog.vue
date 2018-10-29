@@ -1,19 +1,25 @@
 <template>
+
   <div style="height: 100%">
+
     <app-header></app-header>
     <app-img></app-img>
+
   </div>
+
 </template>
 
 <script>
   import BlogHeader from './BlogHeader'
   import BlogImg from './BlogImg'
+  import bar from '../nav-bar1'
+  import footer from '../nav-footer'
 
   export default {
     name: "Blog1",
     components: {
       'app-header': BlogHeader,
-      'app-img': BlogImg
+      'app-img': BlogImg,
     }
   }
 </script>

@@ -42,50 +42,10 @@
         </div>
         <!--内容-->
         <div class="content">
-          <!--小贴士-->
-          <div class="section ui_card">
-            <div class="section_head" @click="flag=!flag">
-              <span class="section_title">贴士</span>
-              <div class="section_toggle">
-                <div class="opened" v-if="flag">↓</div>
-                <div class="closed" v-if="!flag">→</div>
-              </div>
-            </div>
-            <div class="tips_body">
-              <div class="tag new_tag show_tag_input" v-if="flag">
-                <div class="tag_input">
-                  <div class="tip_input input_overlay">
-                    <div class="tip_choice">
-                      <div class="tip_cta">选择贴士类型</div>
-                      <div class="tip_list">
-                        <div class="tip_choice"><span class="tag_name" data-tip="行前准备">行前准备</span><span
-                          class="tag_label">行前贴士</span></div>
-                        <div class="tip_choice"><span class="tag_name" data-tip="注意事项">注意事项</span><span
-                          class="tag_label">事项贴士</span></div>
-                        <div class="tip_choice"><span class="tag_name" data-tip="交通">交通</span><span
-                          class="tag_label">交通贴士</span></div>
-                        <div class="tip_choice"><span class="tag_name" data-tip="签证">签证</span><span
-                          class="tag_label">签证贴士</span></div>
-                        <div class="tip_choice"><span class="tag_name" data-tip="购物">购物</span><span
-                          class="tag_label">购物贴士</span></div>
-                        <div class="tip_choice"><span class="tag_name" data-tip="货币">货币</span><span
-                          class="tag_label">货币贴士</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--第一天-->
+          <!--上传这一次的内容-->
           <newday></newday>
-          <!--新增加一天-->
-          <div class="section ui_card">
-            <div class="section_head" @click="newDays">
-              <span >添加新1天</span>
-            </div>
-          </div>
-          <el-button type="success" class="button submit" @click="upload">提交</el-button>
+          <el-button type="success" class="button submit" @click.native="upload">提交</el-button>
+          <el-button type="success" class="button submit" @click.native="towrite">返回我的游记</el-button>
         </div>
       </div>
       <app-nav-footer></app-nav-footer>
@@ -171,29 +131,9 @@ import footer from '../nav-footer'
 
       },
 
-      //图片预览
-      getImgBase() {
-        var _this = this;
-        var event = event || window.event;
-        var file = event.target.files[0];
-        var reader = new FileReader();
-        //转base64
-        reader.onload = function (e) {
-          _this.imgBase64.push(e.target.result);
-        }
-        reader.readAsDataURL(file);
-      },
-      //删除图片
-      delImg(index) {
-        this.imgBase64.splice(index, 1);
-      },
-      //新增一天
-      newDays() {
-
-      },
       //提交
       upload(){
-        alert('正在提交!')
+        alert('正在提交!请等待审核通过~')
         this.$axios({
           method: 'post',
           url: `${$.url}/user/upload`,
@@ -245,7 +185,7 @@ import footer from '../nav-footer'
     font-weight: normal;
     margin-left: 16px;
     position: relative;
-    top: 15%;
+    margin-top:10px;
     right: 20%;
     display: inline-block;
     font-family: inherit;
@@ -334,7 +274,7 @@ import footer from '../nav-footer'
     z-index: 10;
     background-color: #fff;
     padding: 15px 0;
-    height:50%;
+    height:55%;
   }
 
   .section {

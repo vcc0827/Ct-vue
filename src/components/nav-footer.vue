@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-footer">
+  <div class="nav-footer"style="bottom:0;">
     <div class="wave-box">
       <div class="marquee-box marquee-up" id="marquee-box">
         <div class="marquee">
@@ -531,5 +531,6 @@
     height: 60px;
     background: rgba(0,0,255,0.1)
   }
+
 
 </style>

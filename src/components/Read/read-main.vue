@@ -78,7 +78,7 @@
       },
       mounted() {
         let id = this.$route.params.id;
-        this.$axios.get(`scenic/find/${id}`).then((result) => {
+        this.$axios.get(`locate/find/${id}`).then((result) => {
           this.mydata = result.data.data;
           this.data = JSON.parse(this.mydata[0].article_content);
           console.log(this.data)
