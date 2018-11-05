@@ -36,7 +36,7 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery",
       jquery: "jquery",
-      "window.jQuery": "jquery"
+      "window.jquery": "jquery"
     })
   ],
   module: {

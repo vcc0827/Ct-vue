@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <el-header>
+    <el-header style="height: 104px">
       <app-nav-bar></app-nav-bar>
     </el-header>
     <h2>Go,味蕾之旅！</h2>
@@ -14,8 +14,8 @@
       <el-col :span="6" class="ul" v-for="(item ,key,index) in data" v-if="item.id<=4" :key="key" :index="index">
         <div class="li">
           <img :src="`http://localhost:3000/hkfood/`+item.src" alt="" class="img">
-          <span>{{item.name}}</span>
-          <div>{{item.des}}</div>
+          <span style="font-weight: bold;font-size: 16px">{{item.name}}</span>
+          <div><p class="neirong">{{item.des}}</p></div>
         </div>
       </el-col>
     </el-row>
@@ -24,8 +24,8 @@
       <el-col :span="6" class="ul" v-for="(item,key,index) in data" v-if="item.id>4" :key="key" :index="index">
         <div class="li">
           <img :src="`http://localhost:3000/hkfood/`+item.src" alt=""  class="img">
-          <span>{{item.name}}</span>
-          <div>{{item.des}}</div>
+          <span style="font-weight: bold;font-size: 16px">{{item.name}}</span>
+          <div><p class="neirong">{{item.des}}</p></div>
         </div>
       </el-col>
     </el-row>
@@ -37,8 +37,8 @@
 
 <script>
   import axios from 'axios'
-  import navbar from '../nav-bar1'
-  import footer from '../nav-footer'
+  import navbar from '../nav-bar'
+  import footer from '../foot'
   export default {
     components:{
       'app-nav-bar': navbar,
@@ -69,6 +69,10 @@
 </script>
 
 <style scoped>
+  .neirong{
+    text-indent: 2em;
+    text-align: left;
+  }
   .el-header {
     padding:0;
   }
@@ -80,7 +84,7 @@
     margin: 0 auto;
     padding:0;
     background:white;
-    height: 2000px;
+    height: 1300px;
   }
 
 

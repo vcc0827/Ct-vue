@@ -12,8 +12,7 @@
 <script>
   import BlogHeader from './BlogHeader'
   import BlogImg from './BlogImg'
-  import bar from '../nav-bar1'
-  import footer from '../nav-footer'
+
 
   export default {
     name: "Blog1",

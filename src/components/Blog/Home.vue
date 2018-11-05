@@ -1,7 +1,7 @@
 <template>
   <el-container>
 
-    <el-header><app-nav-bar></app-nav-bar></el-header>
+    <el-header style="height: 104px"><app-nav-bar></app-nav-bar></el-header>
 
     <router-view></router-view>
 
@@ -11,22 +11,27 @@
 </template>
 
 <script>
-  import bar from './nav-bar1'
+  import bar from '../nav-bar'
+  import footer from '.././foot'
 
-  import footer from './nav-footer'
 
   export default {
     name: 'Home',
     components: {
       'app-nav-bar': bar,
+      'app-nav-footer': footer,
 
-      'app-nav-footer': footer
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  *{
+    margin:0;
+    padding: 0;
+    list-style: none;
+  }
   .el-container{
     height:100%;
   }
@@ -44,7 +49,6 @@
   }
 
   .el-header {
-    background: #2d9f80;
     padding: 0;
   }
 

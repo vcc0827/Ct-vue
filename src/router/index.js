@@ -14,15 +14,21 @@ import buy from '../components/show/buy'
 import food from '../components/show/food'
 import photo from '../components/show/photo'
 //他人游记信息
-import ShowALL from '../components/Home'
+import ShowALL from '../components/Blog/Home'
 import ReadOne from '../components/Read/ReadOne'
 import Blog from '../components/Blog/Blog'
-
+//test
+import test from '../components/User/test'
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path:'/test',
+      name:'test',
+      component:test,
+    },
     {
       path:'/',
       name:'main',

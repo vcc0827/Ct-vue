@@ -48,7 +48,7 @@
   }
 
   .el-menu {
-    width: 352px;
+    width: 454px;
     margin: 0 auto;
   }
 </style>

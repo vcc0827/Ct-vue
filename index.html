@@ -4,9 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script>
+      // 彩蛋
+      try{
+        if(window.console&&window.console.log)
+        {
+          console.warn('Author:VCC');
+          console.info('嘻嘻看你发现了什么！')
+          console.log("%c欢迎欢迎~","font-size:14px;color:red;");
+          console.log(
+             " _          __       _____        _            _____        _____            ___  ___        _____  \n"
+            +"| |        / /      | ____|      | |          /  ___|      /  _  \\          /   |/   |      | ____| \n"
+            +"| |  __   / /       | |__        | |          | |          | | | |         / /|   /| |      | |__   \n"
+            +"| | /  | / /        |  __|       | |          | |          | | | |        / / |__/ | |      |  __|  \n"
+            +"| |/   |/ /         | |___       | |___       | |___       | |_| |       / /       | |      | |___  \n"
+            +"|___/|___/          |_____|      |_____|      \\_____|      \\_____/      /_/        |_|      |_____| \n"
+            );
+          console.log("");
+        }
+      }catch(e){};
+    </script>
     <title>ct-vue</title>
     <style>
       html, body {
+        margin:0;
+        padding:0;
         position: relative;
         /*height: 100%;*/
         background-color: rgba(0,0,255,0.1);
@@ -42,6 +64,5 @@
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-
   </body>
 </html>

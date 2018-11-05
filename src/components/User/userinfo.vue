@@ -1,17 +1,17 @@
 <template>
   <el-container style="height: 100%">
-    <el-header style="background: #2d9f80;">
+    <el-header style="height: 120px;">
       <app-nav-bar></app-nav-bar>
     </el-header>
-    <main>
+    <main style="margin-top:20px">
       <div class="clearfix">
         <div class="live_wrap clearfix">
           <div class="myhead">
-            <h1 style="color:#2d9f80;">个人中心</h1>
+            <h1 style="color:#2d9f80">个人中心</h1>
           </div>
           <hr style="border-bottom:2px solid black; margin-bottom: 10px;"/>
           <el-tabs :tab-position="tabPosition">
-            <el-tab-pane label="个人资料">
+            <el-tab-pane label="个人资料" style="font-size: 20px;">
               <div>
                 <div class="title">
                   <span><img src="../../assets/img/personicon.png" alt="" width="20px" style="float:left"></span>
@@ -52,8 +52,8 @@
 
 <script>
 
-  import bar from '../nav-bar1'
-  import footer from '../nav-footer'
+  import bar from '../nav-bar'
+  import footer from '../foot'
   import changeinfo from './changeinfo'
 
 
@@ -82,7 +82,6 @@
         }, 500)
       },
       mounted() {
-        //users = 1; let
         this.$axios.get(`/user/get/`+this.$store.state.user_phone).then((result) => {
            console.log(this.$store.state.user_phone);
           this.data = result.data.data[0];
@@ -110,7 +109,7 @@
     height:30px;
     margin-top:10px;
     margin-bottom:10px;
-    margin-leftnm :10px;
+    margin-left :10px;
     border-bottom:1px dashed #FFCACA;
   }
   .title {
@@ -124,19 +123,29 @@
 
   .live_wrap{
     width: 1000px;
-    margin: 0px auto 60px;
+    margin: 0 auto 60px;
     padding-top: 30px;
   }
   .clearfix{
     display: block;
-    min-height: 1%;
   }
-  .clearfix:after{
-    content: ".";
-    display: block;
-    clear: both;
-    height: 0;
-    visibility: hidden;
-    font-size: 0;
+  *{
+    margin:0;
+    padding: 0;
+    list-style: none;
   }
+  .el-header {
+    padding:0;
+  }
+  .el-main{
+    margin:0;
+    padding:0;
+    position:relative;
+    top:20px;
+    overflow: hidden;
+  }
+  .el-footer{
+    padding:0;
+  }
+
 </style>

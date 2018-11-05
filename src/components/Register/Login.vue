@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <app-head></app-head>
+
+  <div class="bg">
+    <!--<app-head></app-head><br/><br/>-->
     <el-tabs v-model="activeName" @tab-click="handleClick" class="style">
       <!--登录-->
-      <el-tab-pane label="用户登录" name="first">
-        <el-row type="flex" justify="center">
+      <el-tab-pane label="用户登录" name="first" >
+        <el-row type="flex" justify="center" >
           <el-form ref="loginForm" :model="user" status-icon label-width="80px">
             <el-form-item label="用户账号" prop="account">
               <el-input v-model="user.userPhone" placeholder="请输入您的账号"></el-input>
@@ -13,11 +14,313 @@
               <el-input v-model="user.password" type="password" placeholder="请输入您的密码"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" icon="el-icon-upload" round @click="login()">登录</el-button>
+              <el-button type="primary" class="but" icon="el-icon-upload" round @click="login()">登录</el-button>
             </el-form-item>
           </el-form>
         </el-row>
       </el-tab-pane>
+      <div class="container">
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-container">
+          <div class="circle"></div>
+        </div>
+      </div>
       <!--注册-->
       <el-tab-pane label="注册" name="second">
         <el-row type="flex" justify="center">
@@ -36,23 +339,28 @@
                         autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="验证码" prop="code">
-              <el-input type="text" v-model="ruleForm.code" placeholder="请输入验证码" autocomplete="off"></el-input>
-              <el-button type="primary" round @click="getMessage()">获取验证码</el-button>
+              <el-input type="text"  v-model="ruleForm.code" placeholder="请输入验证码" autocomplete="off"></el-input>
+              <el-button type="primary" class="but" round @click="getMessage()">获取验证码</el-button>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" icon="el-icon-edit" circle @click="submitForm('ruleForm')">注册</el-button>
+              <el-button type="primary" class="but" icon="el-icon-edit" circle @click="submitForm('ruleForm')">注册</el-button>
               <el-button icon="info" plain @click="resetForm('ruleForm')">重置</el-button>
             </el-form-item>
           </el-form>
         </el-row>
       </el-tab-pane>
+      <router-link to="/"><p class="fp">？忘记密码</p></router-link>
+      <router-link to="/"><p class="rb">返回首页&nbsp;&nbsp;&nbsp;</p></router-link>
+
+
+
     </el-tabs>
   </div>
 </template>
 <script>
   import axios from 'axios'
   import header from './header'
-
+  import foot from '../foot'
   export default {
     components:{
       'app-head':header
@@ -82,7 +390,7 @@
         var pattern = /^\S{3,20}$/g
         if (value === '') {
           callback(new Error('请输入密码'))
-        } else if (!pattern.test(value)) {
+        } else if (!pattern.test(value)||(value.length<6||value.length>20)) {
           callback(new Error('请输入6-20个非空白字'))
         } else {
           if (this.ruleForm.password !== '') {
@@ -103,7 +411,7 @@
       var validateCode = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请获取验证码'));
-        } else if (value !== this.getcode) {
+        } else if (value !== this.ruleForm.code) {
           callback(new Error('验证码有误，请重新输入!'));
         } else {
           callback();
@@ -122,6 +430,7 @@
           password: '',
           checkPass: '',
           code: '',
+          code1:'',
         },
         rules2: {
           mobile: [
@@ -169,6 +478,7 @@
               // sessionStorage.setItem('sphone',_this.$store.state.user_name);
               // sessionStorage.setItem('spassword',_this.$store.state.password);
               // console.log(_this.$store.state.userName);
+              localStorage.setItem('user_id',result.data.data[0].user_id);
               localStorage.setItem('user_phone', _this.user.userPhone);
               history.go(0);
               _this.$router.push({path: '/'});
@@ -181,13 +491,51 @@
         }
       },
       getMessage() {
-        let _this = this;
-        _this.getcode = '';
+        let _this = this
+        // axios.get(`http://127.0.0.1:3000/user/getallphone/${_this.ruleForm.phoneNum}`,).then((result) => {
+        //   let info = eval("(" + result.request.response + ")");
+        //   if (info.data.length != 0) {
+        //     alert("该用户已经注册,请直接登录!")
+        //   }
+        // }, (err) => {
+        //   console.log(result.err)
+        // })
+        this.ruleForm.code1='';
         for (let i = 0; i < 6; i++) {
-          _this.getcode += Math.floor(Math.random() * 10);
+          _this.ruleForm.code1 += Math.floor(Math.random() * 10);
         }
-        alert(_this.getcode);
+        axios.get('http://v.juhe.cn/sms/send?mobile=' + _this.ruleForm.mobile + '&tpl_id=111245&tpl_value=%23code%23%3d' + _this.ruleForm.code1+ '&key=17759dd89fc0ca61d64ce2f7a29fc859')
+          .then(function (res) {
+              console.log(res)
+            }
+          )
+
+        // function invokeSettime(obj) {
+        //   var countdown = 60;
+        //   settime(obj);
+        //
+        //   // function settime(obj) {
+        //   //   if (countdown == 0) {
+        //   //     $(obj).attr("disabled", false);
+        //   //     $(obj).text("获取验证码");
+        //   //     countdown = 60;
+        //   //     return;
+        //   //   } else {
+        //   //     $(obj).attr("disabled", true);
+        //   //     $(obj).text("(" + countdown + ")s重新发送");
+        //   //     countdown--;
+        //   //   }
+        //   //   setTimeout(function () {
+        //   //       settime(obj)
+        //   //     }
+        //   //     , 1000)
+        //   // }
+        // }
+
+        // new invokeSettime("#showcode");
+
       },
+
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -217,8 +565,46 @@
 </script>
 
 <style>
+  @import "../../assets/css/style.css";
   .style {
-    width: 50%;
-    margin: 0 auto;
+    background-color:transparent;
+    color: black;
+    letter-spacing: 1px;
+    width: 37%;
+    /*margin: 0 auto;*/
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    position: absolute;
+    top: 130px;
+    right: 200px;
+
+
   }
+  .but{
+    background-color:#f5e29f;
+    color: grey;
+  }
+  .fp{
+    font-size:small;
+    font-family:黑体;
+    float: right;
+    font-size:.9em;
+    color:grey;
+    letter-spacing: 1px;
+  }
+  .rb{
+    font-size: small;
+    font-family:黑体;
+    float: left;
+    font-size: .9em;
+    color:gray;
+    letter-spacing: 1px;
+  }
+  .bg{
+    background: url("../../assets/img/zzpic11381.jpg") no-repeat;
+    background-size: 100% auto;
+    height: 100%;
+    width: 100%;
+  }
+
 </style>
+

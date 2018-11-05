@@ -1,70 +1,80 @@
 <template>
-  <div class="read-cont">
-    <div v-for="(item,key,index) in data">
-      <div class="PG" :id="'anchor-'+index"></div>
-      <div style="height: 50px">
-        <div class="d-icon"></div>
-        <div class="d-text">{{key}}</div>
-      </div>
-      <div style="clear: both;margin-top: 20px;margin-bottom: 25px">
-        <div v-for="(subitem,subkey) in item">
-          <div style="margin-top: 25px;margin-bottom: 25px;">
-            <h5 style="font: 22px/24px arial,sans-serif;font-weight: bold;color: #333;">
-              <i class="el-icon-star-on" style="color: #3cc"></i>
-              {{subitem.title}}
-            </h5>
-          </div>
-          <div style="margin-bottom: 25px"><img :src="`http://localhost:3000/images/`+subitem.img" alt=""></div>
-          <div>
-            <p>{{subitem.article}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="side-catalog" style="bottom: 65px;height: 348px;position: fixed;">
-      <div id="sideIndexBox" class="unselectable">
-        <div id="sideIndex">
-          <div class="top_circle">
-            <div class="btm_circle_ring"></div>
-          </div>
-          <div class="btm_circle">
-            <div class="btm_circle_ring"></div>
-          </div>
-          <div class="indexContBox">
-            <div class="scroll_window">
-              <div class="contBox" style="height: 110px;">
-                <div class="scroll_content" style="margin-top: 0;">
-                  <ul class="indexCont">
-                    <li class="tit" :class="{cur_index:is}" v-for="(item,key,index) in data">
-                      <a class="js_jump" href="javascript:void(0)" @click="goAnchor('#anchor-'+index)">{{key}}</a>
-                      <span class="dot"></span>
-                    </li>
-                  </ul>
+  <main>
+    <div v-if="this.$route.params.id<13">
+        <div class="read-cont">
+          <div v-for="(item,key,index) in data">
+            <div class="PG" :id="'anchor-'+index"></div>
+            <div style="height: 50px">
+              <div class="d-icon"></div>
+              <div class="d-text">{{key}}</div>
+            </div>
+            <div style="clear: both;margin-top: 20px;margin-bottom: 25px">
+              <div v-for="(subitem,subkey) in item">
+                <div style="margin-top: 25px;margin-bottom: 25px;">
+                  <h5 style="font: 22px/24px arial,sans-serif;font-weight: bold;color: #333;">
+                    <i class="el-icon-star-on" style="color: #3cc"></i>
+                    {{subitem.title}}
+                  </h5>
+                </div>
+                <div style="margin-bottom: 25px"><img :src="`http://localhost:3000/images/`+subitem.img" alt=""></div>
+                <div>
+                  <p>{{subitem.article}}</p>
                 </div>
               </div>
-              <div class="scrollbar" style="position: absolute; display: none;">
-                <div class="bar" style="position: absolute; top: 0;"></div>
+            </div>
+          </div>
+          <div class="side-catalog" style="bottom: 65px;height: 348px;position: fixed;">
+            <div id="sideIndexBox" class="unselectable">
+              <div id="sideIndex">
+                <div class="top_circle">
+                  <div class="btm_circle_ring"></div>
+                </div>
+                <div class="btm_circle">
+                  <div class="btm_circle_ring"></div>
+                </div>
+                <div class="indexContBox">
+                  <div class="scroll_window">
+                    <div class="contBox" style="height: auto;">
+                      <div class="scroll_content" style="margin-top: 0;">
+                        <ul class="indexCont">
+                          <li class="tit" :class="{cur_index:is}" v-for="(item,key,index) in data">
+                            <a class="js_jump" href="javascript:void(0)" @click="goAnchor('#anchor-'+index)">{{key}}</a>
+                            <span class="dot"></span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="scrollbar" style="position: absolute; display: none;">
+                      <div class="bar" style="position: absolute; top: 0;"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <comment></comment>
     </div>
-  </div>
+    <div v-else v-html="data.article_content" class="read-cont"></div>
+  </main>
 </template>
 
 <script>
+  import comment from '.././comment'
   // import 'swiper/dist/css/swiper.min.css'
 
   export default {
     name: "read",
+    components: {
+      'comment': comment
+    },
     watch: {
       "$route": "mounted",
     },
     data() {
       return {
         data: [],
-        is:true
+        is: true
       }
     },
     created() {
@@ -74,13 +84,17 @@
       goAnchor(selector) {
         var anchor = this.$el.querySelector(selector);
         document.documentElement.scrollTop = anchor.offsetTop;
-        this.is=true;
+        this.is = true;
       },
       mounted() {
         let id = this.$route.params.id;
         this.$axios.get(`locate/find/${id}`).then((result) => {
           this.mydata = result.data.data;
-          this.data = JSON.parse(this.mydata[0].article_content);
+          if (id < 13) {
+            this.data = JSON.parse(this.mydata[0].article_content);
+          }else{
+            this.data = this.mydata[0]
+          }
           console.log(this.data)
         });
       }

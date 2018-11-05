@@ -80,12 +80,11 @@
       var validatePass = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'));
-        } else {
-          if (this.ruleForm.checkPass !== '') {
-            // this.$refs.ruleForm2.validateField('checkPass');
-          }
-          callback();
-        }
+        }else if (!pattern.test(value)||(value.length<6||value.length>20)) {
+          callback(new Error('请输入6-20个非空白字'))}
+        else if (this.ruleForm.checkPass !== '') {
+            this.$refs.ruleForm.validateField('checkPass');
+          }callback();
       };
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {

@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 100%">
-    <el-header><app-nav-bar></app-nav-bar></el-header>
+    <el-header style="height: 104px"><app-nav-bar></app-nav-bar></el-header>
     <el-main class="elmain">
       <div class="header">
         <span class="hworld">快来记录你的旅程吧</span>
@@ -8,27 +8,28 @@
       </div>
       <div style="height:20px"></div>
       <!--我的游记显示-->
-     <el-table :data="data" >
-       <el-table-column label="日期" width="200">
-         <template slot-scope="scope">
-            <span>{{data[0].article_time|dateformat('YYYY-MM-DD')}}</span>
-         </template>
+     <el-table :data="data1">
+       <el-table-column label="日期" width="200" prop="article_time">
+         <!--<template slot-scope="scope">-->
+            <!--<span>{{data.article_time|dateformat('YYYY-MM-DD')}}</span>-->
+         <!--</template>-->
        </el-table-column>
-       <el-table-column label="地点" width="200">
-         <template slot-scope="scope">
-           <span>{{data[0].sort_article}}</span>
-         </template>
+       <el-table-column label="地点" width="200" prop="sort_article">
+         <!--<template slot-scope="scope">-->
+           <!--<span>{{data.sort_article}}</span>-->
+         <!--</template>-->
        </el-table-column>
-       <el-table-column label="游记编号" width="200">
-         <template slot-scope="scope">
-           <span>{{data[0].article_id}}</span>
-         </template>
+       <el-table-column label="游记编号" width="200" prop="article_id">
+         <!--<template slot-scope="scope">-->
+           <!--<span>{{data.article_id}}</span>-->
+         <!--</template>-->
        </el-table-column>
-       <el-table-column label="游记名称" width="500">
-         <template slot-scope="scope">
-           <span @click="toBlog(data[0].article_id)" style="cursor:pointer">{{data[0].article_name}}</span>
-         </template>
+       <el-table-column label="游记名称" width="500" prop="article_name">
+         <!--<template slot-scope="scope">-->
+           <!--<span @click="toBlog(data.article_id)" style="cursor:pointer">{{data.article_name}}</span>-->
+         <!--</template>-->
        </el-table-column>
+
      </el-table>
     </el-main>
     <el-footer>
@@ -39,8 +40,9 @@
 </template>
 
 <script>
-  import bar from '../nav-bar1'
-  import footer from '../nav-footer'
+  import bar from '../nav-bar'
+  import footer from '../foot'
+  import {mapGetters} from 'vuex'
 
   export default {
     components:{
@@ -49,9 +51,10 @@
     },
     data() {
       return {
-        data:[],
+        data1:[],
       }
     },
+    computed: mapGetters(['UserId', 'UserName', 'UserPhone','isLogin']),
     created(){
       this.mounted();
     },
@@ -68,11 +71,10 @@
         console.log(event);
       },
       mounted() {
-        let article = 4;
-        this.$axios.get(`locate/find/${article}`).then((result) => {
-          // console.log(result.data);
-          this.data = result.data.data;
-          console.log(this.data)
+        let article = this.UserId;
+        this.$axios.get(`locate/finduser/${article}`).then((result) => {
+          this.data1=result.data.data;
+          console.log(this.data1)
         })
       },
     },
