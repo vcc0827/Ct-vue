@@ -1,14 +1,14 @@
 <template>
   <el-container style="height: 100%">
     <el-header style="height: 104px"><app-nav-bar></app-nav-bar></el-header>
-    <el-main class="elmain">
+    <el-main class="elmain" style="overflow:hidden">
       <div class="header">
         <span class="hworld">快来记录你的旅程吧</span>
         <el-button class="write" @click="toupload">写游记</el-button>
       </div>
       <div style="height:20px"></div>
       <!--我的游记显示-->
-     <el-table :data="data1">
+     <el-table :data="data1" style="overflow:hidden">
        <el-table-column label="日期" width="200" prop="article_time">
          <!--<template slot-scope="scope">-->
             <!--<span>{{data.article_time|dateformat('YYYY-MM-DD')}}</span>-->
@@ -24,7 +24,7 @@
            <!--<span>{{data.article_id}}</span>-->
          <!--</template>-->
        </el-table-column>
-       <el-table-column label="游记名称" width="500" prop="article_name">
+       <el-table-column label="游记名称" width="200" prop="article_name">
          <!--<template slot-scope="scope">-->
            <!--<span @click="toBlog(data.article_id)" style="cursor:pointer">{{data.article_name}}</span>-->
          <!--</template>-->
@@ -82,6 +82,7 @@
 </script>
 
 <style>
+
   .el-header{
     background: #2d9f80;
     padding: 0;
@@ -122,6 +123,5 @@
   .elmain{
     overflow:hidden;
     text-align: center;
-
   }
 </style>

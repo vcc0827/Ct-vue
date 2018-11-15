@@ -349,7 +349,6 @@
           </el-form>
         </el-row>
       </el-tab-pane>
-      <router-link to="/"><p class="fp">？忘记密码</p></router-link>
       <router-link to="/"><p class="rb">返回首页&nbsp;&nbsp;&nbsp;</p></router-link>
 
 

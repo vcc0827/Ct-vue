@@ -3,25 +3,25 @@
     <div class="container">
       <div class="agile-footer-grids">
         <div class="col-md-4 agile-footer-grid">
-          <h4>友情链接</h4>
-          <p><a href="http://www.baidu.com">百度搜索</a>
-            <span></span></p>
+          <h4>友 情 链 接</h4>
+          <p><a href="http://www.baidu.com">百度搜索</a></p>
+          <p><a href="https://www.amap.com/">高德地图</a></p>
+          <p><a href="/">图马旅游</a></p>
+          <p><a href="/">翠花旅游</a></p>
         </div>
         <div class="col-md-4 agile-footer-grid">
-          <h4>邮箱联系方式</h4>
+          <h4>旅 游 FAQ</h4>
           <ul class="w3agile_footer_grid_list">
             <li>
               <a href="#">http://example.com</a>
-              <span><i class="fa fa-twitter" aria-hidden="true"></i> 02 days ago</span></li>
+            </li>
           </ul>
         </div>
         <div class="col-md-2 agile-footer-grid">
-          <h4>活 动</h4>
+          <h4>联 系 我 们</h4>
           <ul>
-            <li>未来的某个日子<a href="">暂</a></li>
-            <li>未来的某个日子<a href="">无</a></li>
-            <li>未来的某个日子<a href="">活</a></li>
-            <li>未来的某个日子<a href="">动</a></li>
+            <li>站长联系方式<a href="">z@yyj.com</a></li>
+            <li>投诉方式<a href="">tousu@yyj.com</a></li>
           </ul>
         </div>
         <!--<div class="col-md-2 agile-footer-grid">-->

@@ -3,7 +3,7 @@
     <el-header style="height: 104px;margin:0;">
       <app-nav-bar></app-nav-bar>
     </el-header>
-    <el-main class="height:100%;margin-top:2px;">
+    <el-main >
       <!--主体内容部分-->
       <div class="body">
         <!--头部-->
@@ -241,6 +241,7 @@
     margin:0;
     padding: 0;
     list-style: none;
+    overflow: hidden;
   }
   .el-header {
     padding:0;
